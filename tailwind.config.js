@@ -7,10 +7,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'primary': ['"Libre Franklin"', 'sans-serif'],
+        primary: ['"Libre Franklin"', 'sans-serif'],
       },
       colors: {
-        'custom-green': '#CCFF66',
+        'customGreen': '#CCFF66',
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         btn: {
