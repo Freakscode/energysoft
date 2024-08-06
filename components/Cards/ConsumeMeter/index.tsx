@@ -25,7 +25,7 @@ export async function ConsumeMeter() {
     }
 
     const irmsArray = measures?.map(measures => measures.Irms);
-    const potenciaArray = measures?.map(measures => measures.potencia*10);
+    const potenciaArray = measures?.map(measures => (measures.potencia*10).toFixed(2));
 
 
     return (
