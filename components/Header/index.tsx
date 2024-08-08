@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <div className="flex flex-col gap-16 items-center">
       <div className="flex gap-8 justify-center items-center bg-clip-content px-20 py-5">
-        <Image src="/Logo.svg" alt="logo" width={300} height={120}/>
+        <Image src="/Logo.svg" alt="logo" width={400} height={160}/>
         <span className="border-l rotate-45 h-20 ml-20 mr-20 " />
         <Image src="/logoUnisucre.png" alt="Logo Universidad de Sucre" width={140} height={0} />
       </div>

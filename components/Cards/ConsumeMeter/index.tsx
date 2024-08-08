@@ -23,43 +23,50 @@ export default function ConsumeMeter() {
             }
 
             const { data, error: fetchError } = await supabase
-                .from("medidas")
-                .select("id, Irms, potencia, created_at")
-                .gt("Irms", 0)
-                .order("created_at", { ascending: false }) // Ordenar por fecha descendente
+                .from('medidas')
+                .select('*')
+                .order('created_at', { ascending: false })
+                .limit(10);
 
-            if (data) {
-                setMedidas(data);
-            } else {
-                setError("Error al obtener datos: " + fetchError?.message);
+            if (fetchError) {
+                setError("Error al obtener datos: " + fetchError.message);
+                return;
             }
+
+            setMedidas(data);
         };
 
-        fetchData(); // Llamada inicial
+        // Llama a fetchData inmediatamente
+        fetchData();
 
-        const channel = supabase
-            .channel("custom-insert-channel")
-            .on(
-                "postgres_changes",
-                { event: "INSERT", schema: "public", table: "medidas" },
-                (payload) => {
-                    setMedidas((prevMedidas) => [payload.new, ...prevMedidas].slice(0, 10)); // Actualizar y mantener las últimas 10
-                }
-            )
-            .subscribe();
+        // Configura el intervalo para llamar a fetchData cada 30 minutos (1800000 milisegundos)
+        const intervalId = setInterval(fetchData, 1800000);
 
+        // Limpia el intervalo cuando el componente se desmonte
+        return () => clearInterval(intervalId);
+    }, [supabase]);
+
+    useEffect(() => {
+        const channels = supabase.channel('custom-insert-channel')
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'medidas' },
+            (payload) => {
+                setMedidas((medidas) => [...medidas, payload.new]);
+            }
+            ).subscribe();
+
+        // Limpia la suscripción cuando el componente se desmonte
         return () => {
-            supabase.removeChannel(channel);
+            supabase.removeChannel(channels);
         };
-    }, []);
+    }, [supabase]);
 
     const consumoPromedioSemana = medidas
         .filter((medida) => {
-            const fechaMedida = new Date(medida.created_at);
-            const hoy = new Date();
-            const haceUnaSemana = new Date(hoy);
-            haceUnaSemana.setDate(hoy.getDate() - 7);
-            return fechaMedida >= haceUnaSemana;
+            const measureDate = new Date(medida.created_at);
+            const today = new Date();
+            const lastWeek = new Date(today);
+            lastWeek.setDate(today.getDate() - 7);
+            return measureDate >= lastWeek;
         })
         .reduce((acc, medida) => acc + parseFloat(medida.potencia), 0) / (medidas.length > 0 ? medidas.length : 1);
 
