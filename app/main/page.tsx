@@ -1,7 +1,7 @@
 import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { ConsumeMeter } from "@/components/Cards/ConsumeMeter";
+import ConsumeMeter from "@/components/Cards/ConsumeMeter";
 
 export default async function MainComponent() {
     const supabase = createClient();
