@@ -1,0 +1,35 @@
+.divConsumeMeter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    background: rgba(171, 154, 127, 0.63);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.4px);
+    -webkit-backdrop-filter: blur(8.4px);
+    border: 1px solid rgba(171, 154, 127, 0.3);
+}
+
+.svg-meter {
+    padding: 10px
+}
+
+.Potencia {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.promedio {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}

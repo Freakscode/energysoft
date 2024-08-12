@@ -2,12 +2,38 @@
 import { createClient } from "@/utils/supabase/client";
 import { redirect } from "next/navigation";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import './ConsumeMeter.css';
+import Plug from "@/public/icons/plug/icon";
 
 export default function ConsumeMeter() {
-    const [medidas, setMedidas] = useState<any[]>([]); // Ajusta el tipo según tus datos
+    const [medidasActuales, setMedidasActuales] = useState<any[]>([]); 
+    const [promedio, setPromedio] = useState<number | null>(null);
+    const [user, setUser] = useState<any | null>(null);
+    const[userId, setUserId] = useState<string | null>(null);
+    const [authError, setAuthError] = useState<any | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     const supabase = createClient();
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const { data: userResponse, error: authError } = await supabase.auth.getUser();
+            if (authError) {
+                setAuthError(authError);
+                return;
+            }
+            if (!userResponse) {
+                return redirect("/login");
+            }
+            const {id: userId} = userResponse.user;
+            setUser(userResponse.user);
+            setUserId(userId);
+
+        };
+    
+        fetchUser();
+    }, [supabase]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,15 +51,14 @@ export default function ConsumeMeter() {
             const { data, error: fetchError } = await supabase
                 .from('medidas')
                 .select('*')
-                .order('created_at', { ascending: false })
-                .limit(10);
+                .order('created_at', { ascending: false });
 
             if (fetchError) {
                 setError("Error al obtener datos: " + fetchError.message);
                 return;
             }
 
-            setMedidas(data);
+            setMedidasActuales(data);
         };
 
         // Llama a fetchData inmediatamente
@@ -50,7 +75,7 @@ export default function ConsumeMeter() {
         const channels = supabase.channel('custom-insert-channel')
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'medidas' },
             (payload) => {
-                setMedidas((medidas) => [...medidas, payload.new]);
+                setMedidasActuales((medidas) => [...medidas, payload.new]);
             }
             ).subscribe();
 
@@ -60,44 +85,51 @@ export default function ConsumeMeter() {
         };
     }, [supabase]);
 
-    const consumoPromedioSemana = medidas
-        .filter((medida) => {
-            const measureDate = new Date(medida.created_at);
-            const today = new Date();
-            const lastWeek = new Date(today);
-            lastWeek.setDate(today.getDate() - 7);
-            return measureDate >= lastWeek;
-        })
-        .reduce((acc, medida) => acc + parseFloat(medida.potencia), 0) / (medidas.length > 0 ? medidas.length : 1);
-
+        useEffect(() => {
+        const fetchPromedioTotal = async () => {
+            if (!userId) return;
+            const { data: promedio, error } = await supabase
+                .rpc('avg_custom', {
+                    p_case: 'total', 
+                    p_column_name: 'potencia',
+                    p_end_date: null,
+                    p_start_date: null,
+                    p_user_id: userId
+                });
+    
+            setPromedio(promedio);
+    
+            if (error) {
+                setError("Error al obtener promedio: " + error.message);
+                return;
+            }
+        };
+    
+        const intervalId = setInterval(fetchPromedioTotal, 5000);
+    
+        // Limpia el intervalo cuando el componente se desmonte
+        return () => clearInterval(intervalId);
+    }, [userId, supabase]);
 
     return (
-        <main>
-            <div>
-                <h1>Últimas 10 mediciones</h1>
+        <main >
+            <div id="ConsumeMeter" className="divConsumeMeter">
+                <div className = "svg-meter">
+                    <Plug />
+                </div>
+                <h1>Últimas mediciones</h1>
                 {error ? (
                     <p>{error}</p>
                 ) : (
                     <>
-                        <div>
-                            <h2>Irms</h2>
-                            <ul>
-                                {medidas.slice(-10).map((medida) => (
-                                    <li key={medida.id}>{medida.Irms}</li>
-                                ))}
-                            </ul>
+                        <div >
+                            <h2 className="Potencia">Consumo Actual de Energía: {medidasActuales.slice(-1).map((medida) => (
+                                    <p key={medida.id}>{medida.potencia} W</p>
+                                ))}</h2>
                         </div>
                         <div>
-                            <h2>Potencia</h2>
-                            <ul>
-                                {medidas.slice(-10).map((medida) => (
-                                    <li key={medida.id}>{medida.potencia}</li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div>
-                            <h2>Promedio de consumo en la última semana:</h2>
-                            <p>{consumoPromedioSemana.toFixed(2)}</p>
+                            <h2 className="promedio">Promedio total de Consumo: {promedio !== null ? <p>{promedio.toFixed(2)} W</p> : <p>Cargando...</p>}</h2>
+                            
                         </div>
                     </>
                 )}

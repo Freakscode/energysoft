@@ -1,0 +1,42 @@
+/* Definir los colores iniciales y finales */
+#outer_2,
+#outer_1,
+#handler,
+#Vector,
+#Vector_2 {
+    stroke: #BDFFE6;
+    animation-timing-function: ease-in-out;
+}
+
+/* Animación del cambio de color secuencial */
+@keyframes colorChange {
+    0% {
+        stroke: #6BBB88;
+    }
+    10% { 
+        stroke: #E6CEAA; /* Un color intermedio entre el inicial y el final */
+    }
+    20% { 
+        stroke: #421866;
+    }
+    30% {
+        stroke: #E6CEAA; /* El mismo color intermedio para la transición de vuelta */
+    }
+    100% {
+        stroke: #6BBB88;
+    }
+}
+
+#outer_1 {
+    animation: colorChange 5s infinite 0.6s;
+}
+#outer_2 {
+    animation: colorChange 5s infinite 0.7s; 
+}
+#handler {
+    animation: colorChange 5s infinite 0.8s; 
+}
+#Vector,
+#Vector_2 {
+    animation: colorChange 5s infinite 0.85s; 
+}
