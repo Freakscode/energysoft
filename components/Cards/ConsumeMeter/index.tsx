@@ -2,7 +2,6 @@
 import { createClient } from "@/utils/supabase/client";
 import { redirect } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import './ConsumeMeter.css';
 import Plug from "@/public/icons/plug/icon";
 

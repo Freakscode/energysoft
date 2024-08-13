@@ -2,6 +2,7 @@ import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import ConsumeMeter from "@/components/Cards/ConsumeMeter";
+import CardsPackage from "@/components/Cards/threeCards/page";
 import './main.css';
 
 export default async function MainComponent() {
@@ -26,6 +27,9 @@ export default async function MainComponent() {
                 <main className="body">
                     <div className="rtViewer">
                         <ConsumeMeter/>
+                    </div>
+                    <div className="cardsViewer">
+                        <CardsPackage/>
                     </div>
                 </main>
             </div>

@@ -1,0 +1,25 @@
+.cardsBody {
+
+    display: grid;
+    grid-template-row: auto auto auto;
+    grid-template-columns: 1fr;
+    margin:25px;
+}
+
+.mesCard {
+    display:grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: auto; 
+}
+
+.diaCard {
+    display:grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: auto; 
+}
+
+.semanaCard {
+    display:grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: auto; 
+}
