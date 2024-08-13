@@ -1,0 +1,14 @@
+.icons {
+    display: grid;
+    grid-template-columns: 100px 100px 1fr;
+    width: 100vw;
+    padding-top:30px;
+}
+
+.icons:nth-child(1) {
+    padding-left: 40px;
+}
+
+.icons:nth-child(2) {
+    padding-right: 40px;
+}

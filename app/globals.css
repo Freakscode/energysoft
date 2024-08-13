@@ -45,3 +45,11 @@
     border: 1px solid rgba(var(--primary-color), var(--border-opacity));
   }
 }
+
+.main{
+  display: grid;
+  justify-content: center;
+  align-contents: center;
+  grid-template-columns: 1fr;
+  height: 100vh;
+}

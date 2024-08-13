@@ -1,25 +1,46 @@
 .cardsBody {
-
     display: grid;
     grid-template-row: auto auto auto;
     grid-template-columns: 1fr;
-    margin:25px;
+    gap: 15px;
+    font-size: 1.2em;
 }
 
 .mesCard {
     display:grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 1fr auto;
     grid-template-rows: auto; 
+}
+
+.mesCard .icono {
+    justify-self: center;
 }
 
 .diaCard {
     display:grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 1fr auto;
     grid-template-rows: auto; 
+}
+
+.diaCard .icono {
+    justify-self: center;
 }
 
 .semanaCard {
     display:grid;
-    grid-template-columns: 1fr 5fr;
-    grid-template-rows: auto; 
+    grid-template-columns: 1fr 1fr auto;
+    grid-template-rows: auto;
+}
+
+
+.semanaCard div:nth-child(2){
+    padding-right: 10px;
+}
+
+.semanaCard div:nth-child(3){
+    padding-left: 30px;
+}
+
+.semanaCard .icono {
+    justify-self: center;
 }

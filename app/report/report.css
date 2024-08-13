@@ -1,0 +1,24 @@
+.container{
+    display: grid;
+    grid-template-columns: 1fr;  
+    min-width: 100%;
+    min-height: 100vh;
+}
+
+.nav {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: 5vh;
+    width: 100vw;
+}
+
+.nav:nth-child(1) {
+    justify-self: end;
+}
+
+.content {
+    display: grid;
+
+}

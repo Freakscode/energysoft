@@ -1,22 +1,44 @@
 .body {
-    margin: 25px;
-    display: flex;
-    justify-items: center;
-    align-items: center;
     display: grid;
+    justify-content: center;
+    align-contents: center;
     grid-template-columns: auto auto;
-    gap:20px
+    grid-template-rows: 1fr;
+    gap: 20px;
+    min-width: 100vw;
 }
 
 .rtViewer {
-    padding: 20px 20px 30px 60px;
-    display: flex;
+    margin:25px;
+    display: grid;
     justify-items: center;
     align-items: center;
+    min-height: 82vh;
 }
 
 .cardsViewer {
     width: 100%;
     display:grid;
+    margin-top: 20%;
     grid-template-columns: 1fr;
+    height: 70vh;
+}
+
+.Nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 10vh;
+    width: 100%;
+    padding: 0px 20px 0px 20px;
+}
+
+.navbarNav{
+    justify-self: start;
+}
+
+.authNav{
+    justify-self: end;
 }

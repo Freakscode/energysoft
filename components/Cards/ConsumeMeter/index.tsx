@@ -6,10 +6,10 @@ import './ConsumeMeter.css';
 import Plug from "@/public/icons/plug/icon";
 
 export default function ConsumeMeter() {
-    const [medidasActuales, setMedidasActuales] = useState<any[]>([]); 
+    const [medidasActuales, setMedidasActuales] = useState<any[]>([]);
     const [promedio, setPromedio] = useState<number | null>(null);
     const [user, setUser] = useState<any | null>(null);
-    const[userId, setUserId] = useState<string | null>(null);
+    const [userId, setUserId] = useState<string | null>(null);
     const [authError, setAuthError] = useState<any | null>(null);
     const [error, setError] = useState<string | null>(null);
 
@@ -25,12 +25,12 @@ export default function ConsumeMeter() {
             if (!userResponse) {
                 return redirect("/login");
             }
-            const {id: userId} = userResponse.user;
+            const { id: userId } = userResponse.user;
             setUser(userResponse.user);
             setUserId(userId);
 
         };
-    
+
         fetchUser();
     }, [supabase]);
 
@@ -72,10 +72,10 @@ export default function ConsumeMeter() {
 
     useEffect(() => {
         const channels = supabase.channel('custom-insert-channel')
-        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'medidas' },
-            (payload) => {
-                setMedidasActuales((medidas) => [...medidas, payload.new]);
-            }
+            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'medidas' },
+                (payload) => {
+                    setMedidasActuales((medidas) => [...medidas, payload.new]);
+                }
             ).subscribe();
 
         // Limpia la suscripción cuando el componente se desmonte
@@ -84,55 +84,55 @@ export default function ConsumeMeter() {
         };
     }, [supabase]);
 
-        useEffect(() => {
+    useEffect(() => {
         const fetchPromedioTotal = async () => {
             if (!userId) return;
             const { data: promedio, error } = await supabase
                 .rpc('avg_custom', {
-                    p_case: 'total', 
+                    p_case: 'total',
                     p_column_name: 'potencia',
                     p_end_date: null,
                     p_start_date: null,
                     p_user_id: userId
                 });
-    
+
             setPromedio(promedio);
-    
+
             if (error) {
                 setError("Error al obtener promedio: " + error.message);
                 return;
             }
         };
-    
+
         const intervalId = setInterval(fetchPromedioTotal, 5000);
-    
+
         // Limpia el intervalo cuando el componente se desmonte
         return () => clearInterval(intervalId);
     }, [userId, supabase]);
 
     return (
-        <main >
-            <div id="ConsumeMeter" className="divConsumeMeter">
-                <div className = "svg-meter">
-                    <Plug />
-                </div>
-                <h1>Últimas mediciones</h1>
+        <div id="ConsumeMeter" className="divConsumeMeter">
+            <div className="svg-meter">
+                <Plug />
+            </div>
+            <div className="info">
+                <h1 className="title">Últimas mediciones</h1>
                 {error ? (
                     <p>{error}</p>
                 ) : (
                     <>
-                        <div >
+                        <div className="potenciaContainer">
                             <h2 className="Potencia">Consumo Actual de Energía: {medidasActuales.slice(-1).map((medida) => (
-                                    <p key={medida.id}>{medida.potencia} W</p>
-                                ))}</h2>
+                                <p key={medida.id}>{medida.potencia} W</p>
+                            ))}</h2>
                         </div>
-                        <div>
+                        <div className="promedioContainer">
                             <h2 className="promedio">Promedio total de Consumo: {promedio !== null ? <p>{promedio.toFixed(2)} W</p> : <p>Cargando...</p>}</h2>
-                            
+
                         </div>
                     </>
                 )}
             </div>
-        </main>
+        </div>
     );
 }

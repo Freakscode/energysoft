@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@pdfme/common": "^4.3.2",
+    "@pdfme/generator": "^4.3.2",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.4.0",
     "@supabase/supabase-js": "^2.45.1",

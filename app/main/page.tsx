@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import ConsumeMeter from "@/components/Cards/ConsumeMeter";
 import CardsPackage from "@/components/Cards/threeCards/page";
+import Navbar from "@/components/sidebar/navbar";
 import './main.css';
 
 export default async function MainComponent() {
@@ -17,22 +18,18 @@ export default async function MainComponent() {
     }
 
     return (
-        <div className="flex-1 w-full flex flex-col gap-20 items-center">
-            <div className="w-full">
-                <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-                    <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
-                        <AuthButton />
-                    </div>
-                </nav>
-                <main className="body">
-                    <div className="rtViewer">
-                        <ConsumeMeter/>
-                    </div>
-                    <div className="cardsViewer">
-                        <CardsPackage/>
-                    </div>
-                </main>
-            </div>
-        </div>
+        <>
+            <nav className="Nav">
+                    <Navbar />
+            </nav>
+            <main className="body">
+                <div className="rtViewer">
+                    <ConsumeMeter />
+                </div>
+                <div className="cardsViewer">
+                    <CardsPackage />
+                </div>
+            </main>
+        </>
     );
 }

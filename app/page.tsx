@@ -24,7 +24,7 @@ export default async function Index() {
   if (!user) {
     return redirect("/hero");
   }
-  else if (!user) {
+  else if (user) {
     return redirect("/main");
   }
 
