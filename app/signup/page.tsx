@@ -43,6 +43,7 @@ export default function Login({
             options: {
                 data: {
                     'username': username,
+                    'type': "onHold",
                 },
                 emailRedirectTo: `${origin}/auth/callback`,
             },

@@ -10,7 +10,7 @@ export default function Header() {
       </div>
       <div>
       <p className="text-4xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center bg-clip-text text-transparent bg-gradient-to-tr from-green-500 to-purple-300 font-extrabold">
-        TOMA MEJORES DECISIONES CON TECHO
+        TOMA MEJORES DECISIONES CON ENERGYSOFT
       </p>
       <p className="text-xl lg:text-2xl mx-auto max-w-xl text-center mt-5 bg-clip-text text-transparent bg-gradient-to-tr from-green-500 to-purple-300 font-extrabold">
       CONSULTA, ANALIZA Y VISUALIZA TU CONSUMO ELÉCTRICO.

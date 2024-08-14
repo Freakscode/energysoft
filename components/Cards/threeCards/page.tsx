@@ -15,6 +15,7 @@ export default function CardsPackage() {
     const [promedioUltimoMes, setPromedioUltimoMes] = useState<number | null>(null);
     const [promedioUltimaSemana, setPromedioUltimaSemana] = useState<number | null>(null);
     const [promedioUltimoDia, setPromedioUltimoDia] = useState<number | null>(null);
+    const [isDay, setIsDay] = useState<boolean>(true);
     const [user, setUser] = useState<any | null>(null);
     const [userId, setUserId] = useState<string | null>(null);
     const [authError, setAuthError] = useState<any | null>(null);
@@ -39,6 +40,21 @@ export default function CardsPackage() {
 
         fetchUser();
     }, [supabase]);
+
+    useEffect(() => {
+        const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
+        setIsDay(!matchMedia.matches);
+
+        const handleChange = (e: any) =>{
+            setIsDay(!e.matches);
+        };
+
+        matchMedia.addEventListener('change', handleChange);
+
+        return () => {
+            matchMedia.removeEventListener('change', handleChange);
+        }
+    })
 
     useEffect(() => {
         const fetchPromedioMes = async () => {
@@ -155,6 +171,8 @@ export default function CardsPackage() {
             }
         }
 
+        
+
         fetchPromedioUltimaSemana();
         fetchPromedioUltimoMes();
         fetchPromedioUltimoDia();
@@ -202,7 +220,7 @@ export default function CardsPackage() {
             </div>
             <div className="diaCard">
                 <div className="icono">
-                    <MoonIcon />
+                    {isDay ? <DayIcon /> : <MoonIcon />}
                 </div>
                 <div>
                     <h1>Promedio día</h1>
