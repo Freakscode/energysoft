@@ -8,3 +8,10 @@
     align-items: center;
 }
 
+.infoOnHold{
+    font-size: 30px;
+    margin: 0 300px 0 300px;
+    align-self:start;
+    justify-items: center;
+    text-align: center;
+}

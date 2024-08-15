@@ -11,9 +11,14 @@ export default async function MainComponent() {
     const {
         data: { user },
     } = await supabase.auth.getUser();
+    
 
     if (!user) {
         return redirect("/login");
+    }
+    
+    if (user.user_metadata['type'] === 'onHold'){
+        return redirect("/onHold");
     }
 
     return (

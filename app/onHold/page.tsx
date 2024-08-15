@@ -2,7 +2,6 @@
 import { createClient } from "@/utils/supabase/client";
 import React, {useEffect, useState} from "react";
 import { redirect } from "next/navigation";
-import Navbar from "@/components/sidebar/navbar";
 import AuthButton from "@/components/AuthButton";
 import Image from "next/image";
 import './onHold.css';
@@ -45,7 +44,6 @@ export default function OnHold(){
                 return;
             }
             setUserStatus(userStatus);
-            console.log(userStatus);
         };
 
 
@@ -60,9 +58,7 @@ return(
                 <Image src="/Logo.svg" alt="Logo App" width={720} height={480}/>
             </div>
             <div className="infoOnHold">
-            <h1>On Hold</h1>
-            <p>Bienvenido a Energysoft, {userName}! Sí estás viendo está página es porque tu cuenta fue creada exitosamente, sin embargo no cuentas con algún dispositivo <br/>
-            activo en este momento, porfavor configura tu dispositivo de medición de consumo eléctrico de acuerdo a las instrucciones para acceder al dashboard!</p>
+            <p>¡Bienvenido a Energysoft, {userName}! Tu cuenta ha sido creada y activada exitosamente, ahora solo necesitas activar tu dispositivo para acceder al dashboard de datos.</p>
             </div>
         </div>
     </main>
