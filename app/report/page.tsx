@@ -16,6 +16,8 @@ export default async function Report() {
         data: { user },
     } = await supabase.auth.getUser();
 
+    const userId = user?['id'] : null;
+
     if (!user) {
         return redirect("/login");
     }
@@ -25,6 +27,39 @@ export default async function Report() {
     }
 
     const handleGenerateReport = async () => {
+                const { data: promedioYear } = await supabase
+                .rpc('avg_custom', {
+                    p_case: 'current_week',
+                    p_column_name: 'potencia',
+                    p_end_date: null,
+                    p_start_date: null,
+                    p_user_id: userId
+                });
+                const { data: promedioMes } = await supabase
+                .rpc('avg_custom', {
+                    p_case: 'current_week',
+                    p_column_name: 'potencia',
+                    p_end_date: null,
+                    p_start_date: null,
+                    p_user_id: userId
+                });
+                const { data: promedioSemana} = await supabase
+                .rpc('avg_custom', {
+                    p_case: 'current_week',
+                    p_column_name: 'potencia',
+                    p_end_date: null,
+                    p_start_date: null,
+                    p_user_id: userId
+                });
+                const { data: promedioUltimoDia } = await supabase
+                .rpc('avg_custom', {
+                    p_case: 'current_week',
+                    p_column_name: 'potencia',
+                    p_end_date: null,
+                    p_start_date: null,
+                    p_user_id: userId
+                });
+        
         
     };
 

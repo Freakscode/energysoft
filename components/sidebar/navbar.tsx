@@ -4,6 +4,7 @@ import AppLogo from '@/public/icons/appLogo';
 import DocumentsIcon from '@/public/icons/documents';
 import './navbar.css';
 import AuthButton from '../AuthButton';
+import EngLogo from '@/public/icons/engLogo';
 
 export default async function Navbar() {
     const supabase = createClient();
@@ -12,6 +13,9 @@ export default async function Navbar() {
 
     return (
         <div className='icons'>
+            <div className="engLogo">
+                <EngLogo/>
+            </div>
             <div>
                 <a href="/"><AppLogo /></a>
             </div>
@@ -21,6 +25,7 @@ export default async function Navbar() {
             <div>
                 <AuthButton />
             </div>
+            
         </div>
     );
 }

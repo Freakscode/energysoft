@@ -1,0 +1,13 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px auto;
+    width: 100%;
+    height: 100vh;
+}
+
+.formContainer {
+    justify-self: center;
+    width: 400px;
+    align-self: start;
+}
