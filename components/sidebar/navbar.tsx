@@ -1,10 +1,10 @@
 import { createClient } from '@/utils/supabase/server';
 import { useState } from 'react';
+import Image from 'next/image';
 import AppLogo from '@/public/icons/appLogo';
 import DocumentsIcon from '@/public/icons/documents';
 import './navbar.css';
 import AuthButton from '../AuthButton';
-import EngLogo from '@/public/icons/engLogo';
 
 export default async function Navbar() {
     const supabase = createClient();
@@ -13,8 +13,8 @@ export default async function Navbar() {
 
     return (
         <div className='icons'>
-            <div className="engLogo">
-                <EngLogo/>
+            <div>
+            <Image src="/Logo.svg" alt="logo" width={250} height={80}/>
             </div>
             <div>
                 <a href="/"><AppLogo /></a>
@@ -22,10 +22,9 @@ export default async function Navbar() {
             <div>
                 <a href='/report'><DocumentsIcon /></a>
             </div>
-            <div>
+            <div className='authButtonContainer'>
                 <AuthButton />
             </div>
-            
         </div>
     );
 }
