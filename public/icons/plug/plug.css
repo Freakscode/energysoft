@@ -40,3 +40,8 @@
 #Vector_2 {
     animation: colorChange 5s infinite 0.85s; 
 }
+
+@media (max-width: 390px) {
+    width:60%;
+    height:60%;
+}

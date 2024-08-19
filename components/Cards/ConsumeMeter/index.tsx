@@ -116,7 +116,7 @@ export default function ConsumeMeter() {
                 <Plug />
             </div>
             <div className="info">
-                <h1 className="title">Últimas mediciones</h1>
+                <h1 className="title">TIEMPO REAL</h1>
                 {error ? (
                     <p>{error}</p>
                 ) : (
@@ -128,7 +128,6 @@ export default function ConsumeMeter() {
                         </div>
                         <div className="promedioContainer">
                             <h2 className="promedio">Promedio total de Consumo: {promedio !== null ? <p>{promedio.toFixed(2)} W</p> : <p>Cargando...</p>}</h2>
-
                         </div>
                     </>
                 )}

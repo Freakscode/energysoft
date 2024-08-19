@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/client";
 import { redirect } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import generatePDF from "@/app/report/report";
+import './report.css';
 
 
 export default function ButtonReport() {

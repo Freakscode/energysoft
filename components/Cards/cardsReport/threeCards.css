@@ -1,0 +1,46 @@
+.cardsBody {
+    display: grid;
+    grid-template-row: auto auto auto;
+    grid-template-columns: auto;
+    align-items: left;
+    gap: 20px;
+    font-size: 1.2em;
+    width: 800px;
+    height: auto;
+    margin-bottom: 40px;
+}
+
+.mesCard {
+    display:grid;
+    grid-template-columns: 200px 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.mesCard .icono {
+    justify-self: center;
+}
+
+.diaCard {
+    display:grid;
+    grid-template-columns: 200px 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.diaCard .icono {
+    justify-self: center;
+}
+
+.semanaCard {
+    display:grid;
+    grid-template-columns: 200px 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+
+.semanaCard div:nth-child(2){
+    padding-right: 10px;
+}
+
+.semanaCard .icono {
+    justify-self: center;
+}

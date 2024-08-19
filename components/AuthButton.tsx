@@ -17,7 +17,7 @@ export default async function AuthButton() {
   };
 
   return user ? (
-    <div className="flex items-center justify-end pr-20 gap-4">
+    <div className="flex items-center justify-end pr-10 gap-4">
       Bienvenido, {user.user_metadata["username"]}!
       <form action={signOut}>
         <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover ">

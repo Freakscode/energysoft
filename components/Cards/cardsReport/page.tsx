@@ -8,7 +8,7 @@ import DayIcon from "@/public/icons/day/DayIcon";
 import MoonIcon from "@/public/icons/day/MoonIcon";
 import './threeCards.css';
 
-export default function CardsPackage() {
+export default function CardsReport() {
     const [mesConsuption, setmesConsuption] = useState<number | null>(null);
     const [semanaConsumption, setsemanaConsumption] = useState<number | null>(null);
     const [diaConsumption, setdiaConsumption] = useState<number | null>(null);
@@ -194,8 +194,8 @@ export default function CardsPackage() {
                     <MonthIcon />
                 </div>
                 <div>
-                    <h1>Consumo Promedio del mes:</h1>
-                    <h2>{mesConsuption !== null ? <p>{(mesConsuption).toFixed(2)} kW/h</p> : <p>Obteniendo datos...</p>}</h2>
+                    <h1>Consumo mes actual:</h1>
+                    <h2>{mesConsuption !== null ? <p>{(mesConsuption).toFixed(2)} kW/h</p> : <p>Obteniendo datos</p>}</h2>
                 </div>
                 <div>
                     <h1>Promedio mes anterior</h1>

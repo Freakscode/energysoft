@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
-      <body className="bg-gradient-to-t from-slate-900 to-black text-foreground">
+    <html lang="en" className='{GeistSans.className}'>
+      <body className="bg-gradient-to-t from-slate-900 to-black text-foreground min-h-screen w-full bg-cover">
         <main className="main">
           {children}
         </main>

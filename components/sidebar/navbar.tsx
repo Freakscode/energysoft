@@ -13,13 +13,13 @@ export default async function Navbar() {
 
     return (
         <div className='icons'>
-            <div>
+            <div className='logo'>
             <Image src="/Logo.svg" alt="logo" width={250} height={80}/>
             </div>
-            <div>
+            <div className='appLogo'>
                 <a href="/"><AppLogo /></a>
             </div>
-            <div>
+            <div className='documents'>
                 <a href='/report'><DocumentsIcon /></a>
             </div>
             <div className='authButtonContainer'>

@@ -24,7 +24,7 @@ export default async function MainComponent() {
     return (
         <main className="container">
             <nav className="Nav">
-                    <Navbar />
+                <Navbar />
             </nav>
             <div className="body">
                 <div className="rtViewer">

@@ -6,10 +6,10 @@ function Plug() {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="380"
-            height="380"
+            width= "100%"
+            height="100%"
             fill="none"
-            viewBox="-2 -1 180 175"
+            viewBox="-2 -1 182 178"
         >
             <g id="plug" className="plug" stroke="#fff" strokeWidth="5">
                 <path
