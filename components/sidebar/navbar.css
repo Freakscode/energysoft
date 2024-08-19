@@ -1,6 +1,7 @@
 .icons {
     display: grid;
-    grid-template-columns: 1fr 50px 50px 1fr;
+    grid-template-columns: 1fr 50px 50px 50px 1fr;
+    gap: 15px;
     width: 100vw;
     padding-top: 30px;
 }
@@ -12,15 +13,17 @@
     grid-column: 3;
 }
 .icons:nth-child(3) {
-    padding-right: 40px;
     grid-column: 4;
+}
+.icons:nth-child(4) {
+    grid-column: 5;
 }
 @media (max-width: 768px) {
     .logo {
         display: none;
     }
     .icons {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
     .icons:first-child {
         padding-left: 4em;
@@ -29,7 +32,7 @@
     .icons:nth-child(2) {
         grid-column: auto;
     }
-    .icons:nth-child(3) {
+    .icons:nth-child(4) {
         padding-right: 0;
         grid-column: auto;
     }
@@ -40,7 +43,7 @@
         display: none;
     }
     .icons {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
     .icons:first-child {
         padding-left: 3em;
@@ -49,7 +52,7 @@
     .icons:nth-child(2) {
         grid-column: auto;
     }
-    .icons:nth-child(3) {
+    .icons:nth-child(4) {
         padding-right: 0;
         grid-column: auto;
     }

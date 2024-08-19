@@ -9,7 +9,6 @@ export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Energysoft",
   description: "",
-  image: "/logo.svg",
 };
 
 export default function RootLayout({

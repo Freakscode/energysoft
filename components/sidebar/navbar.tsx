@@ -5,6 +5,9 @@ import AppLogo from '@/public/icons/appLogo';
 import DocumentsIcon from '@/public/icons/documents';
 import './navbar.css';
 import AuthButton from '../AuthButton';
+import InfoIcon from '@/public/icons/info/page';
+
+
 
 export default async function Navbar() {
     const supabase = createClient();
@@ -21,6 +24,9 @@ export default async function Navbar() {
             </div>
             <div className='documents'>
                 <a href='/report'><DocumentsIcon /></a>
+            </div>
+            <div>
+                <a href='/about'><InfoIcon /></a>
             </div>
             <div className='authButtonContainer'>
                 <AuthButton />
