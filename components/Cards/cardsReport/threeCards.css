@@ -1,46 +1,51 @@
 .cardsBody {
     display: grid;
-    grid-template-row: auto auto auto;
-    grid-template-columns: auto;
-    align-items: left;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    font-size: 1.5em;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estructura original para pantallas grandes */
+.mesCard, .diaCard, .semanaCard {
+    display: grid;
+    grid-template-columns: 200px 300px 300px;
+    grid-template-rows: auto; 
     gap: 20px;
-    font-size: 1.2em;
-    width: 800px;
-    height: auto;
-    margin-bottom: 40px;
 }
 
-.mesCard {
-    display:grid;
-    grid-template-columns: 200px 1fr 1fr;
-    grid-template-rows: auto;
-}
-
-.mesCard .icono {
+.mesCard .icono, .diaCard .icono, .semanaCard .icono {
     justify-self: center;
-}
-
-.diaCard {
-    display:grid;
-    grid-template-columns: 200px 1fr 1fr;
-    grid-template-rows: auto;
-}
-
-.diaCard .icono {
-    justify-self: center;
-}
-
-.semanaCard {
-    display:grid;
-    grid-template-columns: 200px 1fr 1fr;
-    grid-template-rows: auto;
+    align-self: center;
 }
 
 
-.semanaCard div:nth-child(2){
-    padding-right: 10px;
-}
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .mesCard, .diaCard, .semanaCard {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, auto); /* Cambia a dos filas por tarjeta */
+    }
 
-.semanaCard .icono {
-    justify-self: center;
+    /* Ocultar la tercera columna en pantallas pequeñas */
+    .mesCard div:nth-child(3),
+    .diaCard div:nth-child(3),
+    .semanaCard div:nth-child(3) {
+        display: none;
+    }
+
+    /* Alinear contenido para que ocupe toda la fila */
+    .mesCard div, 
+    .diaCard div, 
+    .semanaCard div {
+        text-align: center;
+    }
+
+    .icono {
+        justify-self: center;
+        margin-bottom: 10px;
+    }
 }

@@ -16,10 +16,10 @@
     grid-template-rows: 1fr;
     min-height: 80%;
     width: 100%;
-    gap: 30px;
     overflow-x: hidden;
     overflow-y: auto;
 }
+
 
 .rtViewer, .cardsViewer {
     display: grid;

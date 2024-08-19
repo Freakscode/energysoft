@@ -1,6 +1,32 @@
-.chartContainer{
-    width: 1000px;
-    height: 600px;
+.chartContainer {
+    width: 100%;
+    max-width: 1000px; /* Máximo ancho para pantallas grandes */
+    height: auto;
+    max-height: 600px;
+    height: 100%;
     justify-content: center;
     align-items: center;
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+
+@media (max-width: 1024px) {
+    .chartContainer {
+        max-width: 90%; /* Ajusta el ancho para pantallas medianas */
+        height: 500px; /* Ajusta la altura */
+    }
+}
+
+@media (max-width: 768px) {
+    .chartContainer {
+        max-width: 100%; /* Ancho completo para pantallas pequeñas */
+        height: 400px; /* Ajusta la altura */
+    }
+}
+
+@media (max-width: 480px) {
+    .chartContainer {
+        margin-top: 40px; /* Añade un margen superior */
+        max-width: 400px; /* Ancho completo para pantallas muy pequeñas */
+        max-height: 340px; /* Ajusta la altura */
+    }
 }

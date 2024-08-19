@@ -21,6 +21,7 @@
     align-self: center;
 }
 
+
 /* Media Query para pantallas pequeñas */
 @media (max-width: 768px) {
     .mesCard, .diaCard, .semanaCard {
