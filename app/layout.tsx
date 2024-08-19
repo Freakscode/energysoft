@@ -7,8 +7,9 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "TECHO",
+  title: "Energysoft",
   description: "",
+  image: "/logo.svg",
 };
 
 export default function RootLayout({
