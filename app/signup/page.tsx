@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
 import './signup.css'
 
+export const runtime = "edge";
 export default function Login({
     searchParams,
 }: {

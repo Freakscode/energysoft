@@ -3,6 +3,8 @@ import Image from "next/image";
 import Navbar from "@/components/sidebar/navbar";
 import './about.css';
 
+
+export const runtime = "edge";
 export default function About() {
     return (
         <main className="container">

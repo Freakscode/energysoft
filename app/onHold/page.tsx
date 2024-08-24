@@ -6,7 +6,7 @@ import AuthButton from "@/components/AuthButton";
 import Image from "next/image";
 import './onHold.css';
 
-
+export const runtime = "edge";
 export default function OnHold(){
     const [user, setUser] = useState<any | null>(null);
     const [userId, setUserId] = useState<string | null>(null);

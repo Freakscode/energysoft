@@ -9,7 +9,7 @@ import ButtonReport from "@/components/Buttons/Report";
 import CardsReport from "@/components/Cards/cardsReport/page";
 import ChartMonth from "@/components/charts/month/page";
 
-
+export const runtime = "edge";
 export default async function Report() {
     const supabase = createClient();
 

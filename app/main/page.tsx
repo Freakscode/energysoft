@@ -5,6 +5,8 @@ import CardsPackage from "@/components/Cards/threeCards/page";
 import Navbar from "@/components/sidebar/navbar";
 import './main.css';
 
+
+export const runtime = "edge";
 export default async function MainComponent() {
     const supabase = createClient();
 
