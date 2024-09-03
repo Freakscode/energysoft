@@ -72,7 +72,7 @@ export default function ConsumeMeter() {
 
     useEffect(() => {
         const channels = supabase.channel('custom-insert-channel')
-            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'medidas' },
+            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'medidas', filter: `user_id=eq.${userId}` },
                 (payload) => {
                     setMedidasActuales((medidas) => [...medidas, payload.new]);
                 }
