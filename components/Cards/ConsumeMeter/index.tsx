@@ -26,15 +26,8 @@ export default function ConsumeMeter() {
                 return redirect("/login");
             }
             const { id: userId } = userResponse.user;
-            
-            
             setUser(userResponse.user);
             setUserId(userId);
-            const {data: devices, error: devicesError} = await supabase
-                .from('devices')
-                .select('id')
-                .eq('user_id', userId);
-            
 
         };
 
@@ -58,7 +51,7 @@ export default function ConsumeMeter() {
                 .from('medidas')
                 .select('*')
                 .order('created_at', { ascending: false });
-            
+
             if (fetchError) {
                 setError("Error al obtener datos: " + fetchError.message);
                 return;
@@ -78,9 +71,8 @@ export default function ConsumeMeter() {
     }, [supabase]);
 
     useEffect(() => {
-        const filter = deviceIds.map(id => `device_id=eq.${id}`).join(',');
         const channels = supabase.channel('custom-insert-channel')
-            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'medidas', filter: filter },
+            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'medidas', filter: `user_id=eq.${userId}` },
                 (payload) => {
                     setMedidasActuales((medidas) => [...medidas, payload.new]);
                 }
